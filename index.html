@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生物经济学 · 期末复习导航</title>
+<style>
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-padding-top: 72px; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  background: #f5f7fb;
+  color: #1e2a3a;
+  line-height: 1.75;
+  font-size: 16px;
+}
+
+/* ============================================
+   TOP NAV
+   ============================================ */
+.top-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 0 24px;
+  display: flex; align-items: center; gap: 2px;
+  overflow-x: auto;
+  height: 60px;
+  scrollbar-width: none;
+}
+.top-nav::-webkit-scrollbar { display: none; }
+.top-nav a {
+  flex-shrink: 0;
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #5a6a7a;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.top-nav a:hover, .top-nav a.active {
+  background: #e8edf5;
+  color: #1e3a8a;
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 60%, #06b6d4 100%);
+  color: white;
+  padding: 48px 24px 36px;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 28px; font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+.hero .sub {
+  font-size: 15px; opacity: 0.9; margin-bottom: 16px;
+}
+.hero .meta {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+  font-size: 13px; opacity: 0.85;
+}
+.meta-badge {
+  background: rgba(255,255,255,0.15);
+  padding: 4px 14px; border-radius: 20px;
+}
+.hero .built-by {
+  margin-top: 14px;
+  font-size: 13px; opacity: 0.7;
+}
+
+/* ============================================
+   EXAM OVERVIEW
+   ============================================ */
+.exam-overview {
+  background: white;
+  margin: 20px 16px;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.exam-overview h2 {
+  font-size: 18px; margin-bottom: 14px;
+  color: #1e3a8a;
+}
+.ov-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+.ov-card {
+  background: #f0f4fe;
+  border-radius: 12px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.ov-card .num { font-size: 24px; font-weight: 700; color: #1e3a8a; }
+.ov-card .label { font-size: 13px; color: #4a5a7a; margin-top: 2px; }
+
+/* ============================================
+   ARTICLE LAYOUT — book format
+   ============================================ */
+.main-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+/* Part Header */
+.part-header {
+  text-align: center;
+  padding: 28px 16px 12px;
+  margin: 28px 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+/* Chapter */
+.chapter {
+  margin-top: 20px;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.ch-header {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: white;
+  padding: 18px 24px;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 17px; font-weight: 600;
+  transition: background 0.2s;
+  user-select: none;
+}
+.ch-header:hover { background: linear-gradient(135deg, #1e40af, #3b82f6); }
+.ch-header .arrow { font-size: 14px; transition: transform 0.3s; }
+.ch-header.collapsed .arrow { transform: rotate(-90deg); }
+.ch-body { padding: 20px 24px; }
+.ch-body.hidden { display: none; }
+
+/* Section within chapter */
+.section {
+  margin-bottom: 20px;
+}
+.section-title {
+  font-size: 16px; font-weight: 600;
+  color: #1e3a8a;
+  margin-bottom: 10px;
+  padding-left: 12px;
+  border-left: 3px solid #3b82f6;
+}
+
+/* Knowledge Cards */
+.kp-card {
+  background: #fafcff;
+  border: 1px solid #e8edf5;
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.kp-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+.kp-title {
+  font-size: 15px; font-weight: 600;
+  color: #1e3a8a; margin-bottom: 8px;
+}
+.kp-card.card-blue   { border-left: 4px solid #3b82f6; }
+.kp-card.card-red    { border-left: 4px solid #ef4444; }
+.kp-card.card-green  { border-left: 4px solid #22c55e; }
+.kp-card.card-orange { border-left: 4px solid #f59e0b; }
+.kp-card.card-purple { border-left: 4px solid #a855f7; }
+
+.def { margin: 8px 0; }
+.def p { margin-bottom: 4px; }
+.def ul, .def ol { padding-left: 20px; margin: 6px 0; }
+.def li { margin-bottom: 3px; }
+
+/* Teacher's emphasis */
+.teacher-note {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 1px solid #fcd34d;
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin: 10px 0;
+  font-size: 14px;
+}
+.teacher-note::before {
+  content: "🗣️ 老师强调：";
+  font-weight: 700; color: #b45309;
+}
+.teacher-note.critical::before {
+  content: "🔴 必考！老师强调：";
+}
+
+/* Trap box */
+.trap-box {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-size: 14px;
+}
+.trap-box::before {
+  content: "⚠️ 易错陷阱：";
+  font-weight: 600; color: #dc2626;
+}
+
+/* Key words */
+.kw { color: #2563eb; font-weight: 600; text-decoration: underline; text-decoration-color: #93c5fd; text-underline-offset: 3px; }
+.kw-red { color: #dc2626; font-weight: 600; }
+.key-point { background: #fef9c3; color: #92400e; padding: 1px 6px; border-radius: 3px; font-weight: 500; }
+
+/* Original Exam Question Block */
+.orig-q {
+  background: #f8faff;
+  border: 1.5px dashed #93c5fd;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 14px;
+}
+.orig-label {
+  display: inline-block;
+  background: #2563eb;
+  color: white;
+  font-size: 12px; font-weight: 600;
+  padding: 2px 12px; border-radius: 12px;
+  margin-bottom: 10px;
+}
+.q-list { padding-left: 20px; margin: 8px 0; }
+.q-list li { margin-bottom: 5px; }
+
+/* Self-test */
+.self-test {
+  border: 1.5px dashed #a855f7;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 16px 0 8px;
+  background: #faf5ff;
+}
+.st-question {
+  cursor: pointer; user-select: none;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.st-question:hover { color: #7c3aed; }
+.st-answer {
+  display: none;
+  margin-top: 8px;
+  padding: 10px 14px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.st-answer.open { display: block; }
+
+/* Three-layer term view */
+.term-three {
+  margin: 12px 0;
+}
+.term-layer {
+  padding: 8px 14px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.term-layer.oral   { background: #fefce8; border-left: 3px solid #f59e0b; }
+.term-layer.acad   { background: #f0f9ff; border-left: 3px solid #0ea5e9; }
+.term-layer.oneline { background: #f0fdf4; border-left: 3px solid #22c55e; }
+
+/* Scroll fade */
+.fade-in {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* Exam tip badge */
+.exam-tip {
+  display: inline-block;
+  background: #dc2626;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 8px;
+  border-radius: 10px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 22px; }
+  .top-nav { padding: 0 10px; }
+  .top-nav a { font-size: 12px; padding: 5px 8px; }
+  .ch-body { padding: 14px 16px; }
+  .kp-card { padding: 14px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- =========== NAV =========== -->
+<nav class="top-nav" id="topNav">
+  <a href="#overview">概览</a>
+  <a href="#part-theory">理论篇</a>
+  <a href="#ch1">Ch1</a>
+  <a href="#ch2">Ch2</a>
+  <a href="#ch3">Ch3</a>
+  <a href="#ch4">Ch4</a>
+  <a href="#part-practice">实践篇</a>
+  <a href="#ch5">Ch5</a>
+  <a href="#ch6">Ch6</a>
+  <a href="#ch7">Ch7</a>
+  <a href="#part-conclusion">总结篇</a>
+  <a href="#ch8">Ch8</a>
+  <a href="#exam">考试题</a>
+</nav>
+
+<!-- =========== HERO =========== -->
+<div class="hero">
+  <h1>🌿 生物经济学 · 期末复习导航</h1>
+  <div class="sub">理论篇 → 实践篇 → 总结篇 · 九章全覆盖</div>
+  <div class="meta">
+    <span class="meta-badge">📘 理论篇 4 章</span>
+    <span class="meta-badge">🏭 实践篇 3 章</span>
+    <span class="meta-badge">📊 总结篇 2 章</span>
+    <span class="meta-badge">📝 名词5+简答4+论述2</span>
+  </div>
+  <div class="built-by">Built by Hermes × 高兴 · 四川农业大学 · 2025-2026学年</div>
+</div>
+
+<!-- =========== EXAM OVERVIEW =========== -->
+<div class="exam-overview fade-in" id="overview">
+  <h2>📋 考试概览</h2>
+  <div class="ov-grid">
+    <div class="ov-card"><div class="num">5</div><div class="label">名词解释</div></div>
+    <div class="ov-card"><div class="num">4</div><div class="label">简答题</div></div>
+    <div class="ov-card"><div class="num">2</div><div class="label">论述题</div></div>
+    <div class="ov-card"><div class="num">10+10</div><div class="label">理论 + 模式</div></div>
+    <div class="ov-card"><div class="num">9</div><div class="label">全部章节</div></div>
+  </div>
+  <div style="margin-top:12px;font-size:14px;color:#4a5a7a;">
+    <strong>🗣️ 老师原话：</strong>"考试题型很简单，就三类题——名词解释5题×6分=<span class="kw-red">30分</span>，简答4题×12分=<span class="kw-red">48分</span>，论述2题=<span class="kw-red">22分</span>（开放性）。十一章总共就十一二个题，想考不及格都难！"
+    <br><strong>💡 复习重点：</strong>名词解释重点是Ch2-Ch3（<span class="kw">10大理论+10大模式 ≈ 20-22个概念</span>）；简答考区别联系+概念展开；论述开放性（伦理法律冲撞+十四五规划）。<span class="kw-red">老师明确：不会考很偏！</span>
+  </div>
+</div>
+
+<!-- ==================================================== -->
+<div class="main-content">
+
+<!-- ==================== 理论篇 ==================== -->
+<div class="part-header" id="part-theory">━━━ 理论篇 ━━━</div>
+
+<!-- =========== 第一章：总论 =========== -->
+<div class="chapter fade-in" id="ch1">
+  <div class="ch-header" onclick="toggleChapter(this)">
+    <span>📘 第一章 · 总论</span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="teacher-note">🗣️ 老师逐章复习时强调：第一章是整门课的导论和基础。了解生物经济学的基本概念、经济形态的演进逻辑、以及生物经济如何给人类提供新的认知视角。</div>
+
+    <div class="section">
+      <div class="section-title">第一节 · 现代人类经济社会发展在探索中前行</div>
+      <div class="kp-card card-blue">
+        <div class="kp-title">人类社会经济发展的时代演进</div>
+        <div class="def">
+          <p><strong>五大经济时代（按科技革命划分）：</strong></p>
+          <ol>
+            <li><span class="kw">狩猎采集经济时代</span> — 原始社会</li>
+            <li><span class="kw">农业经济时代</span> — 靠土地和劳动力</li>
+            <li><span class="kw">工业经济时代</span> — 第一次+第二次科技革命（蒸汽机→电力），从煤/木材→石油/天然气→电力</li>
+            <li><span class="kw">信息经济时代</span> — 第三次科技革命（计算机、互联网），外部强化人（望远镜、雷达、手机）</li>
+            <li><span class="kw-red">生物经济时代</span> — 第四次科技革命（生物科技+人工智能），<span class="key-point">从内部强化人</span>（基因、器官、再生）</li>
+          </ol>
+        </div>
+        <div class="teacher-note">🗣️ 老师特别强调：经济形态按<span class="kw-red">科技革命</span>来划分，第四次科技革命=生物科技+AI，十五五已将生物科技纳入国家战略高度。</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">第二节 · 生物经济将引领人类经济社会走向光明</div>
+      <div class="kp-card card-green">
+        <div class="kp-title">生物经济的前景</div>
+        <div class="def">
+          <p>生物经济以生命科学和生物技术的发展进步为基础，将引领人类进入一个全新的发展阶段。核心领域包括：<span class="kw-red">医疗健康、食品消费、绿色低碳、生物安全</span>。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">第三节 · 生物经济：引领经济学发展变革</div>
+      <div class="kp-card card-purple">
+        <div class="kp-title">生物经济学对经济学的变革意义</div>
+        <div class="def">
+          <p>生物经济学应用<span class="kw">生命科学和医学</span>的观点及方法研究经济与社会问题，是对传统经济学的范式突破——用生命科学的视角重新理解经济行为。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">第四节 · 生物经济：给人类一双眼睛</div>
+      <div class="kp-card card-orange">
+        <div class="kp-title">生物经济的认知工具价值</div>
+        <div class="def">
+          <p>生物经济为人类提供了全新的认知框架——像给人类一双眼睛，让人类能够从<span class="kw">生命本质</span>的角度重新审视经济、社会和发展问题。</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="orig-q">
+      <div class="orig-label">📋 原题关联</div>
+      <ul class="q-list">
+        <li>简答13：人类社会经济发展经历了哪几个时代？</li>
+        <li>简答5：为什么说生物经济形态处于社会经济形态演进的第五阶段？</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- =========== 第二章：生物经济理论 =========== -->
+<div class="chapter fade-in" id="ch2">
+  <div class="ch-header" onclick="toggleChapter(this)">
+    <span>📗 第二章 · 生物经济理论（十大理论）<span class="exam-tip">名词解释重点</span></span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="teacher-note critical">十大理论是名词解释的核心出题来源，每一理论的定义都要背熟！</div>
+
+    <!-- 2.1 经济生命学 -->
+    <div class="section">
+      <div class="section-title">第一节 · 经济生命学（生物经济学）</div>
+      <div class="kp-card card-blue">
+        <div class="kp-title">生物经济学（经济生命学）</div>
+        <div class="def">
+          <p><span class="kw">生物经济学（经济生命学）</span>：应用<span class="kw">生命科学和医学</span>的观点及方法研究经济与社会问题所产生的<span class="kw-red">新的经济理论</span>和<span class="kw-red">新的经济模式</span>。</p>
+        </div>
+        <div class="term-three">
+          <div class="term-layer oral">🗣️ 老师原话：用生命科学和医学的方法来看经济问题，不是传统经济学那套</div>
+          <div class="term-layer acad">📚 专业定义：应用生命科学和医学的观点及方法研究经济与社会问题，产生的新经济理论和新经济模式。</div>
+          <div class="term-layer oneline">💡 一句话：<span class="kw">用生命科学方法研究经济</span>的新学科。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.2 经济基因学 -->
+    <div class="section">
+      <div class="section-title">第二节 · 经济基因学</div>
+      <div class="kp-card card-blue">
+        <div class="kp-title">经济基因学</div>
+        <div class="def">
+          <p>应用生命科学和医学的观点及方法抓住亚当·斯密那只"<span class="kw-red">看不见的手</span>"（市场）。</p>
+          <p>人的经济行为受<span class="kw">基因</span>控制，这里的基因指的是"<span class="kw-red">市场机制</span>"。</p>
+          <p><strong>研究核心内容：</strong>①经济基因研究——经济运行中存在内在的控制力即经济基因；②行为分子遗传学、行为基因遗传学等生物研究；③生物学相关方法在行为学上的应用。</p>
+        </div>
+        <div class="trap-box"><span class="kw-red">区分</span>"经济基因"（经济运行中的内在控制力）和"经济基因学"（学科），以及"经济基因学"和"基因经济学"（≈农业经济学，完全不同）！</div>
+        <div class="self-test">
+          <div class="st-question" onclick="toggleAnswer(this)">📝 【简答】经济基因学的研究核心内容包括哪些方面？</div>
+          <div class="st-answer">
+            ① <span class="kw">经济基因研究</span>——经济运行中的内在控制力<br>
+            ② <span class="kw">行为分子遗传学、行为基因遗传学</span>等生物研究<br>
+            ③ 生物学相关方法在行为学上的应用
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.3 社会基因学 -->
+    <div class="section">
+      <div class="section-title">第三节 · 社会基因学</div>
+      <div class="kp-card card-purple">
+        <div class="kp-title">社会基因学</div>
+        <div class="def">
+          <p>运用生命科学和医学的观点及方法研究<span class="kw-red">社会行为与人类群体</span>从而形成的新理论、新模式的学科。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.4 三元论 -->
+    <div class="section">
+      <div class="section-title">第四节 · 三元论</div>
+      <div class="kp-card card-blue">
+        <div class="kp-title">三元论</div>
+        <div class="def">
+          <p>"<span class="kw-red">三</span>"是世界的本源。万事万物的逻辑：</p>
+          <ul>
+            <li><strong>一：</strong>"<span class="kw">唯一</span>" — 起始状态</li>
+            <li><strong>二：</strong>"<span class="kw">过程</span>" — 发展演变</li>
+            <li><strong>三：</strong>"<span class="kw-red">阶段性终点</span>" — 孕育后爆发</li>
+          </ul>
+          <p>只有达到"三"（阶段性终点），经过孕育后才能突然爆发，突飞猛进。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.5 生命信息载体学说 -->
+    <div class="section">
+      <div class="section-title">第五节 · 生命信息载体学说</div>
+      <div class="kp-card card-purple">
+        <div class="kp-title">生命信息载体学说</div>
+        <div class="def">
+          <p>核心思想：生命是"<span class="kw-red">智者</span>"设计的信息载体，也就是说<span class="key-point">生命的本质是信息</span>。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.6 新资本论 -->
+    <div class="section">
+      <div class="section-title">第六节 · 新资本论</div>
+      <div class="kp-card card-red">
+        <div class="kp-title">新资本论</div>
+        <div class="def">
+          <p><span class="key-point">资本控制世界 → 生命决定资本 → 基因主宰生命</span></p>
+        </div>
+        <div class="trap-box">递进关系！<span class="kw-red">基因是最终主宰</span>，不能搞反顺序。</div>
+      </div>
+    </div>
+
+    <!-- 2.7 经济生物重组理论 -->
+    <div class="section">
+      <div class="section-title">第七节 · 经济生物重组理论</div>
+      <div class="kp-card card-green">
+        <div class="kp-title">经济生物重组理论</div>
+        <div class="def">
+          <p>按照<span class="kw-red">DNA重组原理</span>进行的重组，是最具有<span class="kw">生命力</span>的一种重组。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.8 股市医学模型 -->
+    <div class="section">
+      <div class="section-title">第八节 · 股市医学模型</div>
+      <div class="kp-card card-orange">
+        <div class="kp-title">股市医学模型</div>
+        <div class="def">
+          <p>从生命科学和医学角度出发，通过将<span class="kw-red">癔症</span>及<span class="kw">基因</span>相关概念引入股市分析，提出利用<span class="kw">PAN值</span>预测股市的新理论。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.9 管理信息不对称理论 -->
+    <div class="section">
+      <div class="section-title">第九节 · 管理信息不对称理论</div>
+      <div class="kp-card card-orange">
+        <div class="kp-title">管理信息不对称理论</div>
+        <div class="def">
+          <p>运用生命科学和医学的观点及方法，解决<span class="kw-red">管理者与被管理者</span>之间始终存在的<span class="kw-red">信息不对称</span>问题的新理论。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.10 国家公司学说 -->
+    <div class="section">
+      <div class="section-title">第十节 · 国家公司学说</div>
+      <div class="kp-card card-red">
+        <div class="kp-title">国家公司学说</div>
+        <div class="def">
+          <p>认为国家和企业的基本元素都是<span class="kw-red">人</span>，都是由基本元素——人构成的群体，即<span class="key-point">人的集合体</span>的存在。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="orig-q">
+      <div class="orig-label">📋 原题：名词解释（1-10均为本章）</div>
+      <ol class="q-list">
+        <li>生物经济、生物经济学</li>
+        <li>经济生物重组理论</li>
+        <li>国家公司学说</li>
+        <li>三元论</li>
+        <li>社会基因学</li>
+        <li>股市医学模型</li>
+        <li>管理信息不对称理论</li>
+        <li>生命基因学（经济基因学）</li>
+        <li>新资本论</li>
+        <li>生命信息载体学说</li>
+      </ol>
+    </div>
+
+  </div>
+</div>
+
+<!-- =========== 第三章：生物经济模式 =========== -->
+<div class="chapter fade-in" id="ch3">
+  <div class="ch-header" onclick="toggleChapter(this)">
+    <span>📒 第三章 · 生物经济模式（十大模式）<span class="exam-tip">名词解释重点</span></span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="teacher-note critical">十大模式也是名词解释的重要来源，与十大理论同等重要。注意理解每个模式的核心理念而非死记硬背。</div>
+
+    <p style="margin-bottom: 14px; font-size: 14px; color: #4a5a7a;"><span class="kw">生物经济模式</span>：在生物经济理论指导下所创造的系列新经济模式，即"<span class="kw-red">生物经济+</span>"。</p>
+
+    <!-- 3.1 生物经济试验区 -->
+    <div class="section">
+      <div class="section-title">第一节 · 生物经济试验区</div>
+      <div class="kp-card card-blue">
+        <div class="kp-title">生物经济试验区</div>
+        <div class="def">
+          <p>以<span class="kw">六大创新</span>（观念、体制、科技、产品、市场、管理）为指导，运用<span class="kw">社会基因学</span>理论，聚焦生物经济产业，将<span class="kw-red">大产业、大市场、大金融</span>一体化协同发展形成的现代化产业园区——以企业为主导的大型科技园区。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.2 大产业 -->
+    <div class="section">
+      <div class="section-title">第二节 · 大产业</div>
+      <div class="kp-card card-green">
+        <div class="kp-title">大产业</div>
+        <div class="def">
+          <p>以<span class="kw">生物产业</span>为核心，将现代科技应用于这些产业，是<span class="kw-red">第一、第二、第三产业</span>一体化协同发展形成的产业。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.3 生物经济社区 -->
+    <div class="section">
+      <div class="section-title">第三节 · 生物经济社区</div>
+      <div class="kp-card card-purple">
+        <div class="kp-title">生物经济社区</div>
+        <div class="def">
+          <p>人人都享受现代文明成果但过着原始部落生活的新型社区，提供<span class="kw-red">生活保障、教育保障和医疗保障</span>。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.4 GHP -->
+    <div class="section">
+      <div class="section-title">第四节 · 良好健康管理规范（GHP）※</div>
+      <div class="kp-card card-orange">
+        <div class="kp-title">良好健康管理规范（GHP）</div>
+        <div class="def">
+          <p>围绕人类<span class="kw">全生命周期</span>，对个人健康信息按既定程序<span class="kw">收集、检测、清洗、整理、储存、监测</span>，实行"<span class="kw-red">全方位、个性化、保姆式</span>"的"<span class="kw-red">全线条、全流程、大尺度、长周期</span>"健康服务，实现健康、长寿、幸福。</p>
+        </div>
+        <div class="self-test">
+          <div class="st-question" onclick="toggleAnswer(this)">📝 【简答】GHP包含哪三大系统？内涵分别是什么？</div>
+          <div class="st-answer">
+            ① <span class="kw">健康管理</span>——全生命周期信息收集与监测<br>
+            ② <span class="kw">疗养康复</span>——针对健康问题的疗养服务<br>
+            ③ <span class="kw">健康养老</span>——老年人持续健康关怀
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.5 森林康养 -->
+    <div class="section">
+      <div class="section-title">第五节 · 森林康养</div>
+      <div class="kp-card card-green">
+        <div class="kp-title">森林康养</div>
+        <div class="def">
+          <p>以<span class="kw">森林生态环境、景观、文化</span>为载体，以森林医学、健康管理、疗养康复为核心，整合医疗技术、信息技术与健康保险，以"<span class="kw-red">养生防病</span>"为本质，提供健康管理、疗养康复和健康养老三大服务。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.6 生物经济孵化器 -->
+    <div class="section">
+      <div class="section-title">第六节 · 生物经济孵化器</div>
+      <div class="kp-card card-purple">
+        <div class="kp-title">生物经济孵化器</div>
+        <div class="def">
+          <p>在<span class="kw">经济生物重组理论</span>和<span class="kw">管理信息不对称理论</span>指导下创造的一种生物经济模式。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.7 幸福养老社区 -->
+    <div class="section">
+      <div class="section-title">第七节 · 幸福养老社区</div>
+      <div class="kp-card card-red">
+        <div class="kp-title">幸福养老社区</div>
+        <div class="def">
+          <p>将老人的"<span class="kw">三资</span>"——<span class="kw-red">资产、自己能、资源</span>实施管理，基于"<span class="kw-red">以老卖老，以卖养老</span>"理念，老人不额外增加现金消费即能获得良好养老服务的新型社区。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.8 S-CAP -->
+    <div class="section">
+      <div class="section-title">第八节 · 超级良好农业管理规范（S-CAP）</div>
+      <div class="kp-card card-green">
+        <div class="kp-title">超级良好农业管理规范（S-CAP）</div>
+        <div class="def">
+          <p>沿农产品生产全链条，将GAP应用到<span class="kw-red">基因发现→新品种培育→种植→加工→销售</span>全链条，拓展到<span class="kw">粮食作物、食品作物和中药种植</span>三方面。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.9 生物金融超市 -->
+    <div class="section">
+      <div class="section-title">第九节 · 生物金融超市</div>
+      <div class="kp-card card-orange">
+        <div class="kp-title">生物金融超市</div>
+        <div class="def">
+          <p>利用<span class="kw-red">一站式金融操作</span>为各类企业和产业发展提供资金需求，通过建设<span class="kw">金融部落</span>落实。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.10 生物实验超市 -->
+    <div class="section">
+      <div class="section-title">第十节 · 生物实验超市</div>
+      <div class="kp-card card-blue">
+        <div class="kp-title">生物实验超市</div>
+        <div class="def">
+          <p>从产业和企业层面提出的全新发展理念，协助科研工作者减少不必要的时间浪费，为生物研发人员提供<span class="kw-red">全方位、个性化、保姆式</span>的实验服务。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="orig-q">
+      <div class="orig-label">📋 原题：名词解释（模式类）</div>
+      <ol class="q-list">
+        <li>生物经济孵化器</li>
+        <li>生物实验超市</li>
+        <li>生物经济社区</li>
+        <li>良好健康管理规范（GHP）</li>
+        <li>生物经济试验区</li>
+        <li>超级良好农业管理规范（S-CAP）</li>
+      </ol>
+    </div>
+
+  </div>
+</div>
+
+<!-- =========== 第四章：生物经济产业 =========== -->
+<div class="chapter fade-in" id="ch4">
+  <div class="ch-header" onclick="toggleChapter(this)">
+    <span>📓 第四章 · 生物经济产业</span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <!-- 4.1 基本框架 -->
+    <div class="section">
+      <div class="section-title">第一节 · 生物经济产业基本框架</div>
+      <div class="kp-card card-blue">
+        <div class="kp-title">生物经济产业的定义与框架</div>
+        <div class="def">
+          <p>在<span class="kw">生物经济理论</span>指导下运用<span class="kw">生物经济模式</span>，将<span class="kw-red">大产业、大市场、大金融</span>一体化协同发展形成的产业。是生物产业的<span class="kw-red">最高阶段</span>——<span class="key-point">第三代生物经济产业</span>。</p>
+          <p>框架可概括为：生物资源供给、生物技术与创新、生物经济产业链、生态与环境保护、政策与法律框架、经济与市场机制、社会影响与可持续发展。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4.2 理论和基本原理 -->
+    <div class="section">
+      <div class="section-title">第二节 · 生物经济产业理论和基本原理</div>
+      <div class="kp-card card-purple">
+        <div class="kp-title">基本原理</div>
+        <div class="def">
+          <p><span class="key-point">太阳是地球生命和人类活动能源的唯一来源</span>。</p>
+          <p><strong>中国生物经济发展的五大基础：</strong><span class="kw">科技、人才、资源、市场、产业</span>。</p>
+          <p><strong>生物经济的特征：</strong>① <span class="kw">创新性</span>；② <span class="kw-red">三要素密集型和四高一长性</span>（知识技术资本三要素密集型；高技术、高投入、高风险、高收益、长周期）。</p>
+        </div>
+        <div class="self-test">
+          <div class="st-question" onclick="toggleAnswer(this)">📝 【简答】请简述生物经济的特征。</div>
+          <div class="st-answer">
+            <strong>注意先答定义！</strong><br>
+            生物经济是以生命科学和生物技术为基础的新经济形态。<br>
+            特征：① <span class="kw">创新性</span>（技术、制度、管理、思想创新）；<br>
+            ② <span class="kw-red">三要素密集型和四高一长性</span>（知识技术资本密集型，高技术、高投入、高风险、高收益、长周期）。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4.3 统计指标体系 -->
+    <div class="section">
+      <div class="section-title">第三节 · 生物经济产业统计指标体系框架</div>
+      <div class="kp-card card-green">
+        <div class="kp-title">产业竞争格局与发展政策</div>
+        <div class="def">
+          <p><strong>行业集中度：</strong><span class="kw">生物医药</span>和<span class="kw">生物安全</span>较高；<span class="kw-red">生物质能替代</span>和<span class="kw">生物农业</span>相对不高。</p>
+          <p><strong>区域格局：</strong>山东、江苏、广东、四川、河南生物经济规模突破<span class="kw-red">万亿</span>。</p>
+          <p><strong>重点领域：</strong><span class="kw-red">医疗健康、食品消费、绿色低碳、生物安全</span></p>
+        </div>
+      </div>
+      <div class="kp-card card-red">
+        <div class="kp-title">《"十四五"生物经济发展规划》核心要点</div>
+        <div class="def">
+          <ul>
+            <li>加快生物技术赋能<span class="kw-red">健康、农业、能源、环保</span></li>
+            <li>建设生物经济<span class="kw">创新发展高地</span></li>
+            <li>引导资源向<span class="kw">京津冀、长三角、粤港澳大湾区</span>聚集</li>
+            <li>培育<span class="kw">生物医药、生物农业、生物制造</span>领域世界级龙头</li>
+            <li>发挥<span class="kw">北京、上海、江苏、广东、成渝双城经济圈</span>优势</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="orig-q">
+      <div class="orig-label">📋 原题关联</div>
+      <ul class="q-list">
+        <li>简答12：简述生物经济产业的基本框架结构。</li>
+        <li>简答9：生物经济具有哪些特征？请简要分析。</li>
+        <li>简答1：生物经济具有什么作用？</li>
+        <li>简答6：《"十四五"生物经济发展规划》阶段性目标是什么？</li>
+        <li>简答17：生物经济会催生哪些新业态？新行业？</li>
+      </ul>
+    </div>
+
+    <div class="teacher-note">🗣️ 老师补充：除了上述内容，第四章还涉及生物制造技术、人工器官等延展话题，考试中简答题可能会考到。</div>
+
+    <div class="kp-card card-orange">
+      <div class="kp-title">人工器官种类 <span class="exam-tip">简答考点</span></div>
+      <div class="def">
+        <p><strong>按照技术路线分为四大类：</strong></p>
+        <ol>
+          <li><span class="kw">机械式人造器官</span>：纯机械装置，如心脏起搏器、机械假肢、关节假体</li>
+          <li><span class="kw-red">半机械式半生物材料合成器官</span>（混合型）：机械+生物材料结合，如人工血管、人工瓣膜</li>
+          <li><span class="kw">移植式器官</span>：从其他生物体（如猪）培育后移植，已在做肾脏、肝脏</li>
+          <li><span class="kw">再生式器官</span>：利用<span class="kw-red">细胞培养和再生医学技术</span>，通过人体细胞生长分化培育——<span class="key-point">未来方向</span></li>
+        </ol>
+      </div>
+      <div class="teacher-note">🗣️ 老师原话："纯机械式 → 半机械半合成 → 移植式 → 再生式。分四大类，不要搞混！"</div>
+    </div>
+
+    <div class="self-test">
+      <div class="st-question" onclick="toggleAnswer(this)">📝 【简答】人工器官可分为哪几种类型？</div>
+      <div class="st-answer">
+        ① <span class="kw">机械式</span>（起搏器、假肢）<br>
+        ② <span class="kw-red">半机械半生物材料合成</span>（人工血管、瓣膜）<br>
+        ③ <span class="kw">移植式</span>（猪培育肾脏、肝脏）<br>
+        ④ <span class="kw">再生式</span>（细胞培养+再生医学，未来方向）
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="part-header" id="part-practice">━━━ 实践篇 ━━━</div>
+
+<!-- =========== 第五章：企业实践 =========== -->
+<div class="chapter fade-in" id="ch5">
+  <div class="ch-header" onclick="toggleChapter(this)">
+    <span>🏭 第五章 · 企业实践：北大未名引领生物经济</span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="section">
+      <div class="section-title">第一节 · 北大未名的过去</div>
+      <div class="kp-card card-blue">
+        <div class="kp-title">北大未名集团的发展历程</div>
+        <div class="def">
+          <p>北大未名集团是中国生物经济产业的<span class="kw-red">先行者</span>和标杆企业，从创立之初就以生物经济理论为指导，探索将生物技术产业化、市场化的道路。其发展历程是中国生物经济从理论到实践的缩影。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">第二节 · 北大未名的现在</div>
+      <div class="kp-card card-green">
+        <div class="kp-title">北大未名的产业布局与实践</div>
+        <div class="def">
+          <p>北大未名在生物医药、生物农业、生物能源、生物环保等领域均有布局，实践了<span class="kw">大产业、大市场、大金融</span>一体化协同发展的生物经济模式。其核心园区——生物经济试验区——是企业主导型科技园区的典范。</p>
+          <p>关键实践：运用<span class="kw">经济生物重组理论</span>和<span class="kw">管理信息不对称理论</span>指导企业运营，创造了<span class="kw-red">生物经济孵化器</span>等创新模式。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">第三节 · 北大未名的未来</div>
+      <div class="kp-card card-purple">
+        <div class="kp-title">北大未名的战略愿景</div>
+        <div class="def">
+          <p>北大未名致力于引领中国乃至全球生物经济产业发展，推动生物经济成为继农业经济、工业经济、信息经济之后的新经济形态。其目标是成为中国生物经济的<span class="kw-red">世界级龙头企业</span>。</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- =========== 第六章：区域实践 =========== -->
+<div class="chapter fade-in" id="ch6">
+  <div class="ch-header" onclick="toggleChapter(this)">
+    <span>🌄 第六章 · 区域实践：生物经济为山区发展提供新思路</span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="section">
+      <div class="section-title">第一节 · 沿山经济带与沿山经济特区</div>
+      <div class="kp-card card-blue">
+        <div class="kp-title">沿山经济带：中国经济的未来增长极</div>
+        <div class="def">
+          <p><span class="kw">沿山经济带</span>和<span class="kw-red">沿山经济特区</span>是中国经济未来的重要增长极。利用山区的生物资源禀赋，发展生物经济产业，变"劣势"为"优势"。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">第二节 · 乡村振兴的"未名方案"</div>
+      <div class="kp-card card-green">
+        <div class="kp-title">北大未名为乡村振兴提供"未名方案"</div>
+        <div class="def">
+          <p>将生物经济模式应用于农村地区，通过<span class="kw">超级良好农业管理规范（S-CAP）</span>等工具推动农业现代化，实现乡村产业振兴。生物经济为乡村振兴提供了全新的路径。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">第三节 · 生物经济：解决三农问题的根本出路</div>
+      <div class="kp-card card-red">
+        <div class="kp-title">三农问题与生物经济</div>
+        <div class="def">
+          <p>农业、农村、农民问题（"三农"问题）的根本出路在于发展<span class="kw-red">生物经济</span>——通过生物技术推动农业转型升级，通过生物经济模式实现农村产业多元化，通过生物经济产业带动农民增收。</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- =========== 第七章：国家实践 =========== -->
+<div class="chapter fade-in" id="ch7">
+  <div class="ch-header" onclick="toggleChapter(this)">
+    <span>🇨🇳 第七章 · 国家实践：生物经济为中国经济奇迹找到答案</span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="section">
+      <div class="section-title">第一节 · 中国创造了世界经济史的奇迹</div>
+      <div class="kp-card card-blue">
+        <div class="kp-title">中国经济增长的成就</div>
+        <div class="def">
+          <p>中国在过去几十年里创造了世界经济史上的增长奇迹，从农业国迅速转变为世界第二大经济体。这一成就的背后，<span class="kw">科技创新</span>和<span class="kw-red">产业转型升级</span>是关键驱动力。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">第二节 · 中国成为世界第一经济体是历史必然</div>
+      <div class="kp-card card-green">
+        <div class="kp-title">中国经济的历史必然性</div>
+        <div class="def">
+          <p>在生物经济时代，中国凭借<span class="kw">科技基础、人才储备、资源禀赋、市场规模、产业体系</span>五大优势，有望在生物经济领域实现引领，成为世界第一经济体是历史必然趋势。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">第三节 · 生物经济揭示了中国经济奇迹的根源</div>
+      <div class="kp-card card-purple">
+        <div class="kp-title">生物经济视角下的中国经济奇迹</div>
+        <div class="def">
+          <p>生物经济理论为我们理解中国经济奇迹提供了全新视角——<span class="kw">经济基因</span>（市场机制的内化）、<span class="kw-red">经济生物重组</span>（产业结构的有机整合）、<span class="kw">三元论</span>（发展的阶段性突破）等理论，从生命科学角度揭示了中国经济增长的内在逻辑。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="orig-q">
+      <div class="orig-label">📋 原题关联</div>
+      <ul class="q-list">
+        <li>论述6：请论述生物经济在国民经济发展中的作用。</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== 总结篇 ==================== -->
+<div class="part-header" id="part-conclusion">━━━ 总结篇 ━━━</div>
+
+<!-- =========== 第八章：必由之路 =========== -->
+<div class="chapter fade-in" id="ch8">
+  <div class="ch-header" onclick="toggleChapter(this)">
+    <span>🌟 第八章 · 生物经济是人类发展的必由之路</span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="section">
+      <div class="section-title">第一节 · 为社会主义市场经济提供科学基础</div>
+      <div class="kp-card card-blue">
+        <div class="kp-title">生物经济与社会主义市场经济</div>
+        <div class="def">
+          <p>生物经济理论为社会主义市场经济提供了<span class="kw">科学基础</span>——用生命科学的严谨方法论证市场机制与政府调控的有机统一，从生命本质层面阐释经济发展的内在规律。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">第二节 · 为人类真正认识世界提供独特视野</div>
+      <div class="kp-card card-purple">
+        <div class="kp-title">生物经济的认知革命</div>
+        <div class="def">
+          <p>生物经济为人类提供了<span class="kw-red">全新的认知视野</span>——从生命的本质角度理解经济行为、社会组织和人类发展，超越了传统经济学的机械论范式。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">第三节 · 为人类和平持续发展提供正确方向</div>
+      <div class="kp-card card-green">
+        <div class="kp-title">生物经济与人类可持续发展</div>
+        <div class="def">
+          <p>生物经济以生命为本、以自然为根，为人类提供了<span class="kw">和平发展、可持续发展</span>的正确方向。在生物经济时代，人类有望实现经济发展与生态保护的统一、效率与公平的统一、个体与整体的统一。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="orig-q">
+      <div class="orig-label">📋 原题关联</div>
+      <ul class="q-list">
+        <li>论述2：请论述生物经济发展对人类伦理学带来的碰撞与挑战。</li>
+        <li>论述1：请结合生物经济发展分析"人类的独特权"这一权利提出的必要性。</li>
+        <li>论述3：请分析生物经济发展的趋势和规律。</li>
+        <li>论述7：请用社会基因学解释为什么要构建人类命运共同体？</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- =========== 考试题汇编 =========== -->
+<div class="chapter fade-in" id="exam">
+  <div class="ch-header" onclick="toggleChapter(this)">
+    <span>📝 考试题汇编 · 名词解释 + 简答 + 论述</span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="orig-q">
+      <div class="orig-label">📋 名词解释（17题）</div>
+      <ol class="q-list">
+        <li>生物经济、生物经济学</li>
+        <li>经济生物重组理论</li>
+        <li>国家公司学说</li>
+        <li>生物经济孵化器</li>
+        <li>生物实验超市</li>
+        <li>三元论</li>
+        <li>生物经济</li>
+        <li>社会基因学</li>
+        <li>股市医学模型</li>
+        <li>生物经济社区</li>
+        <li>良好健康管理规范（GHP）</li>
+        <li>管理信息不对称理论</li>
+        <li>生命基因学（经济基因学）</li>
+        <li>新资本论</li>
+        <li>生物经济试验区</li>
+        <li>超级良好农业管理规范（S-CAP）</li>
+        <li>生命信息载体学说</li>
+      </ol>
+    </div>
+
+    <div class="orig-q">
+      <div class="orig-label">📋 简答题（17题）</div>
+      <ol class="q-list">
+        <li>生物经济具有什么作用？</li>
+        <li>人工器官可分为哪几种类型？</li>
+        <li>良好健康管理规范包含哪三大系统？它们的内涵分别是什么？</li>
+        <li>生物经济与知识经济的联系与区别是什么？</li>
+        <li>为什么说生物经济形态处于社会经济形态演进的第五阶段？</li>
+        <li>《"十四五"生物经济发展规划》提出的生物经济发展阶段性目标是什么？</li>
+        <li>为什么说生物制造（技术）是经济发展的助力车？</li>
+        <li>生物经济与低碳经济的联系与区别是什么？</li>
+        <li>生物经济具有哪些特征？请简要分析。</li>
+        <li>生物经济与循环经济有什么联系与区别？</li>
+        <li>什么是生物制造技术？它在经济发展中具有什么样的战略地位？</li>
+        <li>简述生物经济产业的基本框架结构。</li>
+        <li>人类社会经济发展经历了哪几个时代？</li>
+        <li>生物经济十大理论之间的联系与区别是什么？</li>
+        <li>生物经济发展模式的内涵是什么？就两个以上模式举例说明。</li>
+        <li>生物技术和生命科学间的联系是什么？</li>
+        <li>生物经济会催生哪些新业态？新行业？</li>
+      </ol>
+    </div>
+
+    <div class="orig-q">
+      <div class="orig-label">📖 论述题（7题）</div>
+      <ol class="q-list">
+        <li>请结合生物经济发展分析"人类的独特权"这一权利提出的必要性。</li>
+        <li>请论述生物经济发展对人类伦理学带来的碰撞与挑战。</li>
+        <li>请分析生物经济发展的趋势和规律。</li>
+        <li>什么是生物经济模式？请至少就3种模式举例说明。</li>
+        <li>请论述基因污染的危害性。</li>
+        <li>请论述生物经济在国民经济发展中的作用。</li>
+        <li>请用社会基因学解释为什么要构建人类命运共同体？</li>
+      </ol>
+    </div>
+
+    <!-- 论述题标答框架 -->
+    <div class="teacher-note critical">🗣️ 老师明确：论述题是开放性问题！"关于伦理道德的问题，生物经济这个时代的发展带来哪些伦理道德遭受哪些挑战——你去讲吧，大胆的讲大胆的写！"</div>
+
+    <div class="kp-card card-red">
+      <div class="kp-title">🎯 论述题标答框架：生物经济时代的伦理与法律冲撞</div>
+      <div class="def">
+        <p><strong>1. 道德观念冲突：</strong></p>
+        <ul>
+          <li>基因编辑与克隆技术冲击传统道德观念（能不能编辑人类基因？）</li>
+          <li>跨物种基因融合引发人类地位和生态平衡争议（"蜘蛛人"、"基因融合"）</li>
+          <li>科研自由 vs 生命尊严的道德边界（科学家想怎么研究就怎么研究？）</li>
+          <li>转基因和基因编辑的道德冲击</li>
+        </ul>
+        <p><strong>2. 利益分配问题：</strong></p>
+        <ul>
+          <li>生物技术成果分配不均加剧贫富差距</li>
+          <li>短期经济利益 vs 长期生态利益</li>
+          <li>国际竞争中的利益博弈（中国vs美国vs欧盟：美国最激进、欧盟最保守、中国居中）</li>
+        </ul>
+        <p><strong>3. 应对措施：</strong>科研机构与企业履行社会责任；加强生物伦理教育；政府舆论引导与监督；完善法律保护生物多样性、安全和人类遗传资源。</p>
+        <p><strong>4. 总结：</strong><span class="key-point">未来是生物经济的时代，生物经济发展前景广阔。</span></p>
+      </div>
+    </div>
+
+    <!-- 自测练习 -->
+    <div class="self-test">
+      <div style="font-weight:600;margin-bottom:10px;">📝 自测练习区</div>
+
+      <div class="st-question" onclick="toggleAnswer(this)">【判断】"生物经济学"和"生物经济"是同一个概念。</div>
+      <div class="st-answer">❌ 错误。生物经济学是<span class="kw">学科/理论</span>；生物经济是<span class="kw-red">经济形态</span>。</div>
+
+      <div class="st-question" onclick="toggleAnswer(this)">【单选】新资本论的核心观点是？</div>
+      <div class="st-answer"><span class="kw">资本控制世界 → 生命决定资本 → 基因主宰生命</span>。基因是最终主宰。</div>
+
+      <div class="st-question" onclick="toggleAnswer(this)">【单选】生物经济产业被称为第几代？</div>
+      <div class="st-answer"><span class="kw-red">第三代</span>（生物产业的最高阶段）。</div>
+
+      <div class="st-question" onclick="toggleAnswer(this)">【多选】生物经济的特征包括？</div>
+      <div class="st-answer">✅ 创新性 ✅ 三要素密集型和四高一长性 ❌ 低风险（×）</div>
+
+      <div class="st-question" onclick="toggleAnswer(this)">【简答】生物经济的四个发展阶段？</div>
+      <div class="st-answer">
+        ① <span class="kw">萌芽</span>—1953 DNA双螺旋；② <span class="kw">成长</span>—2000 人类基因组草图；③ <span class="kw">快速发展</span>—技术产业扩大；④ <span class="kw">成熟</span>—2020s末。
+      </div>
+
+      <div class="st-question" onclick="toggleAnswer(this)">【判断】"经济基因学"和"基因经济学"是同一个学科。</div>
+      <div class="st-answer">❌ 完全不同。经济基因学从<span class="kw">基因学角度</span>研究经济；基因经济学建立在<span class="kw-red">基因产业</span>之上（≈农业经济学）。</div>
+    </div>
+
+    <div class="kp-card card-orange">
+      <div class="kp-title">💡 简答题答题技巧（老师点拨）</div>
+      <div class="def">
+        <ul>
+          <li><span class="kw-red">问"特征"必须先答定义！</span>不能只答特征不答定义——老师反复强调</li>
+          <li>区别与联系类题目：生物经济 vs 知识经济/信息经济/循环经济——都要准备</li>
+          <li>GHP和S-CAP容易混淆！一个管人（健康）一个管农业——不要答串</li>
+          <li>人工器官分四大类：机械式→半机械半合成→移植式→再生式</li>
+          <li>每章都有考，8章8个简答备选，其他背熟名词解释</li>
+          <li>论述题用四步框架：定义 → 梳理 → 评价 → 案例。大胆写，开放性问题！</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kp-card card-purple">
+      <div class="kp-title">🗣️ 老师特别提示：社会基因学 → 人类命运共同体</div>
+      <div class="def">
+        <p>老师反复强调：<span class="kw">社会基因学</span>可以为<span class="kw-red">构建人类命运共同体</span>提供理论支撑！</p>
+        <p>科学证据：全世界80亿人的基因<span class="key-point">94%来自非洲</span>，追溯到<span class="kw-red">12万7千年前</span>的共同母亲（线粒体遗传）。从父系也追溯到了共通祖先。这就是科学的"人类命运共同体"证据。</p>
+        <p class="teacher-note">🗣️ "你们小组做过的选题——人类命运共同体，你怎么看待？从社会基因学能不能找到理论支撑？"——老师原话暗示<span class="kw-red">这道论述题大概率会考</span>！</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div> <!-- /main-content -->
+
+<!-- =========== FOOTER =========== -->
+<div style="text-align:center;padding:32px 16px 48px;color:#9ca3af;font-size:13px;">
+  <p>🌿 生物经济学 · 期末复习导航</p>
+  <p>四川农业大学 · 2025-2026学年</p>
+  <p>Built by <strong>Hermes × 高兴</strong></p>
+  <p style="margin-top:8px;">🎯 理论篇 + 实践篇 + 总结篇 · 九章全覆盖 · 17名词解释 · 17简答 · 7论述</p>
+</div>
+
+<!-- =========== JS =========== -->
+<script>
+function toggleChapter(el) {
+  const body = el.parentElement.querySelector('.ch-body');
+  if (body) {
+    body.classList.toggle('hidden');
+    el.classList.toggle('collapsed');
+  }
+}
+
+function toggleAnswer(el) {
+  const answer = el.nextElementSibling;
+  if (answer && answer.classList.contains('st-answer')) {
+    answer.classList.toggle('open');
+  }
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+const sections = document.querySelectorAll('.chapter, .exam-overview');
+const navLinks = document.querySelectorAll('.top-nav a');
+
+function updateNav() {
+  let current = '';
+  sections.forEach(s => {
+    const top = s.getBoundingClientRect().top;
+    if (top < 200) current = s.id || '';
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateNav);
+updateNav();
+</script>
+
+</body>
+</html>
